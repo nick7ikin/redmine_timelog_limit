@@ -1,9 +1,10 @@
 require 'redmine'
 
 Rails.configuration.to_prepare do
-  require_dependency 'timelog_controller'
-  # UsersHelper.send(:include, RateUsersHelperPatch) unless UsersHelper.included_modules.include?(RateUsersHelperPatch)
-  TimelogController.send(:include, TimeEntryPatch)
+  require 'time_entry'
+  TimeEntry.send(:include, TimeEntryPatch)
+  # require_dependency 'timelog_controller'
+  # TimelogController.send(:include, TimeEntryPatch)
 end
 
 
