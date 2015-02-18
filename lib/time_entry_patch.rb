@@ -12,8 +12,9 @@ module TimeEntryPatch
       def check_limit
         time_entry_date = spent_on
         num_of_days = Date.today - time_entry_date
-        if num_of_days > 3 && !User.current.admin?
-          errors.add :spent_on, "you can't log later then 3 days"
+        timelog_limit = TimelogLimit.timelog_days_limit
+        if num_of_days > timelog_limit && !User.current.admin?
+          errors.add :spent_on, "you can't log later then #{timelog_limit} days"
         end
       end
     end
