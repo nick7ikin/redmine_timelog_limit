@@ -12,6 +12,6 @@ Redmine::Plugin.register :redmine_timelog_limit do
   version '0.0.1'
   url 'https://github.com/nick7ikin/redmine_timelog_limit'
 
-  settings :partial => 'settings/redmine_timelog_limit/settings'
+  settings :default => {}, :partial => 'settings/redmine_timelog_limit/settings'
 
 end
