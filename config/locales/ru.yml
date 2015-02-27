@@ -1,3 +1,9 @@
 # English strings go here for Rails i18n
 ru:
   days_auto_offset_limit: "Лимит в днях с авто-сдвигом"
+  manual_global_date_limit: "Глобальное ограничение по дате"
+  exclusive_users: "Исключения пользователей"
+  must_be_after: "должно быть после "
+  must_be_closer_to_the_current_day: "должно быть ближе к сегодня "
+
+

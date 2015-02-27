@@ -4,3 +4,55 @@
   <%= text_field_tag 'settings[timelog_days_auto_offset_limit]', TimelogLimit.timelog_days_auto_offset_limit, :size => 3 %>
 </p>
 
+<p>
+  <label><%= l(:manual_global_date_limit) %></label>
+  <%= text_field_tag('settings[timelog_manual_global_date_limit]', TimelogLimit.timelog_manual_global_date_limit_string, :size => 10) %>
+  <%= calendar_for('settings_timelog_manual_global_date_limit') %>
+</p>
+
+<fieldset class="box">
+  <legend><%= l(:exclusive_users) %></legend>
+
+  <table class="query-columns">
+    <tr>
+      <td style="padding-left:0">
+
+        <%= select_tag 'available_columns',
+                       options_for_select(TimelogLimit.active_users_without_exceptional),
+                       :multiple => true, :size => 20, :style => "width:300px",
+                       :ondblclick => "moveOptions(this.form.available_columns, this.form.selected_columns);
+                       recalculateSelectedUsers(this.form.selected_columns, this.form.selected_users);" %>
+
+      </td>
+
+      <td class="buttons">
+
+        <input type="button" value="&#8594;"
+               onclick="moveOptions(this.form.available_columns, this.form.selected_columns);
+                       recalculateSelectedUsers(this.form.selected_columns, this.form.selected_users);" /><br />
+        <input type="button" value="&#8592;"
+               onclick="moveOptions(this.form.selected_columns, this.form.available_columns);
+                       recalculateSelectedUsers(this.form.selected_columns, this.form.selected_users);" />
+      </td>
+
+      <td>
+
+        <%= select_tag 'selected_columns',
+                       options_for_select(TimelogLimit.exceptional_users_hash),
+                       :id => 'selected_columns', :multiple => true, :size => 20, :style => "width:300px",
+                       :ondblclick => "moveOptions(this.form.selected_columns, this.form.available_columns);
+                       recalculateSelectedUsers(this.form.selected_columns, this.form.selected_users);" %>
+
+      </td>
+    </tr>
+  </table>
+
+</fieldset>
+
+<%= hidden_field_tag 'settings[exclusive_users]', TimelogLimit.exceptional_users_id_string, :id => 'selected_users' %>
+
+<% content_for :header_tags do %>
+    <%= javascript_include_tag 'my_select_list_move', :plugin => 'redmine_timelog_limit' %>
+<% end %>
+
+
