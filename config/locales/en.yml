@@ -3,5 +3,5 @@ en:
   days_auto_offset_limit: "Days auto-offset limit"
   manual_global_date_limit: "Global manual date limit"
   exclusive_users: "Exlusive users"
-  must_be_after: "must be after "
-  must_be_closer_to_the_current_day: "must be closer to the current day "
+  must_be_after: must be after
+  must_be_closer_to_the_current_day: must be closer to the current day

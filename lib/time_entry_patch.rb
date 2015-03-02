@@ -28,7 +28,7 @@ module TimeEntryPatch
         days_since_date_limit = time_entry_date - limit_date
         if days_since_date_limit < 0
           # errors.add :spent_on, "you can't log before #{limit_date}"
-          error_str = l(:must_be_after) + TimelogLimit.timelog_manual_global_date_limit_date
+          error_str = "you can't log time before " + limit_date.to_s
           errors.add :spent_on, l(error_str)
         end
       end
@@ -39,7 +39,7 @@ module TimeEntryPatch
         timelog_limit = TimelogLimit.timelog_days_auto_offset_limit
         if num_of_days > timelog_limit && !User.current.admin?
           error_str = l(:must_be_closer_to_the_current_day) + timelog_limit.to_s
-          errors.add :spent_on, "you can't log later then #{timelog_limit} days"
+          errors.add :spent_on, "you can't log earlier than #{timelog_limit} days before current day"
         end
       end
     end
